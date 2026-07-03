@@ -58,3 +58,10 @@ Jeevika Harshine S
 
 Biomedical Engineering
 Bannari Amman Institute of Technology
+## Hardware Setup
+
+![Setup](Setup.jpg)
+
+## Output
+
+![Output](Output.jpg)
