@@ -1,62 +1,110 @@
-# Detection of Glucose and Bilirubin in Neonates
+# Detection of Glucose and Bilirubin in Neonates Using Non-Invasive Optical Sensing
 
-## Overview
+![Project Status](https://img.shields.io/badge/Status-Completed-success)
+![Platform](https://img.shields.io/badge/Platform-ESP32-blue)
+![Domain](https://img.shields.io/badge/Domain-Biomedical%20Engineering-green)
 
-This project presents a portable, low-cost, and non-invasive optical sensing system for estimating glucose and bilirubin levels in neonates. The system utilizes optical biosensing, signal processing, and embedded computing to provide real-time monitoring without requiring invasive blood sampling.
+## Project Overview
 
-Neonatal hypoglycemia and jaundice are common conditions that require continuous monitoring. Conventional diagnostic methods involve blood collection, which can be painful and difficult to perform repeatedly in newborns. This project aims to provide a safer, non-invasive alternative using optical sensing techniques.
+Neonatal jaundice and hypoglycemia are among the most common medical conditions affecting newborns and require continuous monitoring for timely intervention. Conventional diagnostic techniques rely on invasive blood sampling, which can cause discomfort, increase infection risk, and limit the feasibility of frequent measurements.
+
+This project presents a **portable, low-cost, and non-invasive optical sensing system** capable of estimating **bilirubin** and **glucose** concentrations in neonatal tissue using multi-wavelength spectroscopy and embedded signal processing.
+
+The proposed system utilizes optical absorption characteristics of biological tissues, a silicon PIN photodiode for signal acquisition, and an ESP32 microcontroller for real-time processing and display of estimated biochemical parameters.
+
+---
+
+## Problem Statement
+
+Current clinical methods for measuring neonatal bilirubin and glucose levels require invasive blood collection procedures.
+
+Challenges include:
+
+- Pain and discomfort for newborns
+- Risk of infection
+- Difficulty in frequent monitoring
+- Limited accessibility in resource-constrained settings
+
+The objective of this project is to develop a non-invasive alternative that enables continuous and real-time monitoring.
 
 ---
 
 ## Objectives
 
-- Develop a non-invasive monitoring system for neonatal glucose and bilirubin detection.
-- Reduce the need for invasive blood sampling.
-- Provide real-time measurement using embedded hardware.
-- Enable low-cost point-of-care diagnostics for neonatal healthcare.
+- Design a non-invasive neonatal monitoring system.
+- Estimate bilirubin and glucose levels using optical sensing.
+- Develop a portable embedded platform based on ESP32.
+- Implement real-time signal acquisition and processing.
+- Provide an affordable point-of-care diagnostic solution.
 
 ---
 
 ## System Architecture
 
-### Hardware Components
-
-- Multi-Wavelength Optical Sensor
-- Silicon PIN Photodiode
-- Transimpedance Amplifier
-- High-Resolution ADC
-- ESP32 Microcontroller
-- OLED Display
-
-### Software Components
-
-- Arduino IDE
-- ESP32 Firmware
-- Signal Processing Algorithms
-- OLED Display Interface
+```text
+Multi-Wavelength LEDs
+          │
+          ▼
+    Neonatal Tissue
+          │
+          ▼
+ Silicon PIN Photodiode
+          │
+          ▼
+ Transimpedance Amplifier
+          │
+          ▼
+      ESP32 ADC
+          │
+          ▼
+ Signal Processing
+          │
+          ▼
+ OLED Display Output
+```
 
 ---
 
 ## Working Principle
 
-1. Light from multiple wavelengths is directed into neonatal tissue.
-2. Tissue absorption characteristics vary with glucose and bilirubin concentration.
-3. Reflected optical signals are detected by a silicon PIN photodiode.
-4. The signal is amplified using a transimpedance amplifier.
-5. The ESP32 reads the analog signal through its ADC.
-6. Signal processing algorithms estimate bilirubin and glucose concentrations.
-7. Results are displayed in real-time on an OLED display.
+1. Multi-wavelength light is directed onto neonatal tissue.
+2. Tissue absorbs light differently based on bilirubin and glucose concentration.
+3. Reflected optical signals are captured using a silicon PIN photodiode.
+4. Signals are amplified through a transimpedance amplifier.
+5. The ESP32 acquires the analog signal through its ADC.
+6. Signal processing algorithms estimate glucose and bilirubin concentrations.
+7. Results are displayed in real time on an OLED display.
 
 ---
 
-## Project Structure
+## Hardware Components
+
+| Component | Purpose |
+|------------|------------|
+| ESP32 Microcontroller | Data acquisition and processing |
+| Multi-Wavelength LEDs | Optical illumination |
+| Silicon PIN Photodiode | Optical signal detection |
+| Transimpedance Amplifier | Signal conditioning |
+| ADC | Analog-to-digital conversion |
+| OLED Display | Real-time output display |
+| Power Supply | System operation |
+
+---
+
+## Software Components
+
+- Arduino IDE
+- Embedded C/C++
+- ESP32 Development Framework
+- Signal Processing Algorithms
+- OLED Display Libraries
+
+---
+
+## Repository Structure
 
 ```text
 Neonatal-Glucose-Bilirubin-Detection
-│
-├── Images
-│   ├── Setup.jpg
-│   └── Output.jpg
 │
 ├── ESP32_Code
 │   ├── ESP32_Main.ino
@@ -64,6 +112,13 @@ Neonatal-Glucose-Bilirubin-Detection
 │   ├── SignalProcessing.cpp
 │   ├── Display.h
 │   └── Display.cpp
+│
+├── Images
+│   ├── Setup.jpg
+│   └── Output.jpg
+│
+├── Report
+│   └── REPORT.pdf
 │
 └── README.md
 ```
@@ -76,81 +131,113 @@ Neonatal-Glucose-Bilirubin-Detection
 
 ---
 
-## Output
+## Experimental Output
 
 ![Output](Images/Output.jpg)
 
 ---
 
-## Source Code
+## Software Implementation
 
-### ESP32_Main.ino
+### Main Controller
 
-Main program responsible for:
+**ESP32_Main.ino**
+
+Responsible for:
+
 - Sensor initialization
 - Data acquisition
 - Signal processing
-- OLED display updates
+- OLED display control
 
-### SignalProcessing.h
+### Signal Processing Module
 
-Contains function declarations for:
-- Sensor initialization
-- Voltage acquisition
+**SignalProcessing.h / SignalProcessing.cpp**
+
+Functions include:
+
+- Sensor voltage acquisition
+- ADC data conversion
 - Bilirubin estimation
 - Glucose estimation
+- Signal conditioning
 
-### SignalProcessing.cpp
+### Display Module
 
-Implements:
-- ADC signal acquisition
-- Sensor voltage calculation
-- Bilirubin concentration estimation
-- Glucose concentration estimation
+**Display.h / Display.cpp**
 
-### Display.h
+Functions include:
 
-Contains OLED display function declarations.
-
-### Display.cpp
-
-Handles:
 - OLED initialization
-- Real-time display of bilirubin values
-- Real-time display of glucose values
+- Real-time display updates
+- User interface handling
 
 ---
 
-## Features
+## Key Features
 
-- Non-Invasive Measurement
-- Real-Time Monitoring
-- Portable Design
-- Low-Cost Implementation
-- ESP32-Based Embedded System
-- OLED Display Interface
-- Optical Biosensing Technology
+✅ Non-invasive measurement
+
+✅ Real-time monitoring
+
+✅ Portable embedded platform
+
+✅ Low-cost implementation
+
+✅ OLED-based display interface
+
+✅ Biomedical signal processing
+
+✅ Point-of-care diagnostics
 
 ---
 
 ## Applications
 
 - Neonatal Intensive Care Units (NICU)
+- Pediatric Healthcare Monitoring
 - Point-of-Care Diagnostics
-- Home Healthcare Monitoring
 - Rural Healthcare Centers
-- Continuous Neonatal Monitoring
+- Home-Based Neonatal Monitoring
+- Biomedical Research
 
 ---
 
-## Future Enhancements
+## Advantages
 
-- Machine Learning-Based Calibration
-- Mobile Application Integration
-- IoT Connectivity
-- Cloud-Based Monitoring
-- Clinical Validation with Larger Datasets
-- Wearable Sensor Integration
+- Eliminates repeated blood sampling
+- Reduces neonatal discomfort
+- Portable and lightweight
+- Cost-effective solution
+- Suitable for continuous monitoring
+- Easy deployment in resource-limited settings
+
+---
+
+## Future Scope
+
+- IoT-based remote monitoring
+- Mobile application integration
+- Cloud-based data storage
+- AI-assisted calibration models
+- Wireless communication modules
+- Wearable neonatal monitoring systems
+- Clinical validation on larger datasets
+
+---
+
+## Project Report
+
+The complete project documentation is available in the Report folder.
+
+📄 **Project Report:**  
+`Report/REPORT.pdf`
+
+---
+
+## Results
+
+The developed prototype successfully demonstrates the feasibility of estimating neonatal glucose and bilirubin concentrations using non-invasive optical sensing techniques. The system performs real-time acquisition, processing, and display of optical measurements using an ESP32-based embedded platform.
 
 ---
 
@@ -163,27 +250,36 @@ Handles:
 - Arduino IDE
 - Signal Processing
 - OLED Display Technology
-
----
-
-## Results
-
-The developed prototype demonstrates the feasibility of estimating glucose and bilirubin levels non-invasively using optical sensing techniques and embedded signal processing.
+- Point-of-Care Diagnostics
 
 ---
 
 ## Authors
 
-**Janasruthika P R**  
-B.E Biomedical Engineering  
+### Janasruthika P R
+Bachelor of Engineering – Biomedical Engineering  
 Bannari Amman Institute of Technology
 
-**Jeevika Harshine S**  
-B.E Biomedical Engineering  
+### Jeevika Harshine S
+Bachelor of Engineering – Biomedical Engineering  
 Bannari Amman Institute of Technology
+
+---
+
+## Institution
+
+Department of Biomedical Engineering  
+Bannari Amman Institute of Technology  
+Sathyamangalam, Tamil Nadu, India
 
 ---
 
 ## License
 
-This project is developed for academic and research purposes.
+This repository is intended for academic, educational, and research purposes.
+
+---
+
+### Acknowledgement
+
+We express our sincere gratitude to the Department of Biomedical Engineering, Bannari Amman Institute of Technology, for providing guidance, resources, and support throughout the development of this project.
